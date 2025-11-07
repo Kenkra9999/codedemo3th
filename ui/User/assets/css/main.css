@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+}
+
+/* Common */
+button {
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset !important; /* màu nền khớp theme */
+    -webkit-text-fill-color: #fff !important; /* chữ trắng */
+    caret-color: #fff; /* con trỏ gõ chữ cũng trắng */
+    transition: background-color 5000s ease-in-out 0s;
+}
+button {
+    background-color: #00b3ff;
+    border: none;
+    padding: 1.2rem 1.6rem;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #fff;
+    color: #00b3ff;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+li {
+    list-style: none;
+}
+
+/*  */
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    font-size: 1.6rem;
+}
+
+.content {
+    padding: 0 10rem;
+}
+/* Thêm vào main.css hoặc index.css */
+
+.navbar-wrapper.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}

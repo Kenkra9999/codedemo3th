@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Add Product</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/forms.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <img style="width: 200px;" src="../../ui/User/assets/images/2.png" alt="logo"/>
+
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html"><i class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a></li>
+                <li class="nav-item"><a href="products.html"><i class="fa-solid fa-box-archive"></i><span>Products</span></a></li>
+                <li class="nav-item"><a href="categories.html"><i class="fa-solid fa-folder-tree"></i><span>Categories</span></a></li>
+                <li class="nav-item"><a href="orders.html"><i class="fa-solid fa-cart-shopping"></i><span>Orders</span></a></li>
+                <li class="nav-item"><a href="customers.html"><i class="fa-solid fa-users"></i><span>Customers</span></a></li>
+                <li class="nav-item"><a href="reports.html"><i class="fa-solid fa-chart-line"></i><span>Reports</span></a></li>
+            </ul>
+            <div class="sidebar-footer">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="app-header">
+                <form action="search-results.html" method="GET" class="header-search">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" name="query" placeholder="Search products, orders, customers...">
+                </form>
+                <div class="header-right">
+                    <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+                    
+                    <div class="profile-menu" id="profile-menu-toggle">
+                        <img src="https://as2.ftcdn.net/jpg/01/88/16/11/1000_F_188161181_ECXsk62DZLJR611UniB6oScNJsyZVEdZ.jpg" alt="Admin Avatar">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="profile-dropdown" id="profile-dropdown">
+                        <div class="dropdown-header">
+                            <span>Admin</span>
+                            <small>admin@tech.com</small>
+                        </div>
+                        <ul class="dropdown-list">
+                            <li class="dropdown-item"><a href="#"><i class="fa-solid fa-gear"></i><span>Setting</span></a></li>
+                        </ul>
+                        <div class="dropdown-footer">
+                             <li class="dropdown-item"><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a></li>
+                        </div>
+                    </div>
+                    </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <div>
+                        <h1>Add New Product</h1>
+                        <p>Fill in the details to add a new product</p>
+                    </div>
+                </div>
+
+                <form action="products.html" method="GET" class="form-layout">
+                    <div class="card form-container">
+                        <div class="card-header"><h3>Product Details</h3></div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label for="product-name">Product Name</label>
+                                <input type="text" id="product-name" placeholder="e.g., Keyboard" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-description">Description</label>
+                                <textarea id="product-description" rows="6" placeholder="Write something about the product..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card form-aside">
+                        <div class="card-header"><h3>Organization</h3></div>
+                        <div class="card-content">
+                            <div class="form-group">
+
+                                <label for="product-category">Category</label>
+                                <select id="product-category" required>
+                                    <option value="">---Select a category---</option>
+                                    <option value="smartphones">Smartphones</option>
+                                    <option value="laptops">Laptops</option>
+                                    <option value="accessories">Accessories</option>
+                                    <option value="tablets">Smart Home</option>
+                                    <option value="tablets">Others</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="product-price">Price ($)</label>
+                                <input type="number" id="product-price" placeholder="0.00" step="0.01" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-stock">Stock Quantity</label>
+                                <input type="number" id="product-stock" placeholder="0" step="1" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Product Image</label>
+                                <label for="product-image-upload" class="image-upload-box">
+                                    <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                                    <p><strong>Click to upload</strong> or drag and drop</p>
+                                    <small>PNG, JPG, GIF up to 10MB</small>
+                                </label>
+                                <input type="file" id="product-image-upload" accept="image/*">
+                                <div class="image-preview"></div> </div>
+                        </div>
+                    </div>
+                    
+                    <div style="grid-column: 1 / -1;">
+                        <div class="form-actions">
+                            <a href="products.html" class="btn btn-secondary">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save Product</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </main>
+    </div>
+    
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Search Results</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/products.css">
+    <link rel="stylesheet" href="assets/css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body>
+<div class="app-container">
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <img style="width: 200px;" src="../../ui/User/assets/images/2.png" alt="logo">
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><i
+                    class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a></li>
+            <li class="nav-item"><a href="products.html"><i
+                    class="fa-solid fa-box-archive"></i><span>Products</span></a></li>
+            <li class="nav-item"><a href="categories.html"><i
+                    class="fa-solid fa-folder-tree"></i><span>Categories</span></a></li>
+            <li class="nav-item"><a href="orders.html"><i class="fa-solid fa-cart-shopping"></i><span>Orders</span></a>
+            </li>
+            <li class="nav-item"><a href="customers.html"><i class="fa-solid fa-users"></i><span>Customers</span></a>
+            </li>
+            <li class="nav-item"><a href="reports.html"><i class="fa-solid fa-chart-line"></i><span>Reports</span></a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="app-header">
+            <form action="search-results.html" method="GET" class="header-search">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" name="query" value='Monitor 27"' placeholder="Search products, orders, customers...">
+            </form>
+            <div class="header-right">
+                <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+
+                <div class="profile-menu" id="profile-menu-toggle">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbN9kird_uBOxIp7D8wPDFheGHqHYkba_FDw&s"
+                         alt="Admin Avatar">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <div class="dropdown-header">
+                        <span>Admin</span>
+                        <small>admin@tech.com</small>
+                    </div>
+                    <ul class="dropdown-list">
+                        <li class="dropdown-item"><a href="#"><i class="fa-solid fa-gear"></i><span>Setting</span></a></li>
+                    </ul>
+                    <div class="dropdown-footer">
+                        <li class="dropdown-item"><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a></li>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>Search Results</h1>
+                    <p>Found 1 matching product</p>
+                </div>
+                <a href="products.html" class="btn btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to Products</span>
+                </a>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Contact</th>
+                        <th>Role</th>
+                        <th>Orders</th>
+                        <th>Total Spent</th>
+                        <th>Joined</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="customer-info">
+                                <img src="https://vb.1cdn.vn/2025/01/20/static-images.vnncdn.net-vps_images_publish-000001-000003-2025-1-20-_avaaaaaaaa-72913.jpg"
+                                     alt="j97">
+                                <div>
+                                    <span class="name">Trinh Tran Phuong Tuan</span>
+                                    <span class="id">ID: 1</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="customer-info">
+                                <div>
+                                    <span class="email">j97@email.com</span>
+                                    <span class="phone">+84 912345678</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="status-badge"
+                                  style="background-color: var(--status-processing-bg); color: var(--status-processing-text);">VIP Customer</span>
+                        </td>
+                        <td>7</td>
+                        <td>$18900</td>
+                        <td>2023-03-15</td>
+                        <td>
+                            <div class="action-icons">
+                                <i class="fa-solid fa-envelope"></i>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="customer-info">
+                                <img src="https://media-cdn-v2.laodong.vn/Storage/NewsPortal/2021/8/8/939805/Thien-An-Tung-Bang-C.jpg"
+                                     alt="snack">
+                                <div>
+                                    <span class="name">Thien An</span>
+                                    <span class="id">ID: 4</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="customer-info">
+                                <div>
+                                    <span class="email">snack@email.com</span>
+                                    <span class="phone">+84 912344419</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="status-badge"
+                                  style="background-color: var(--status-shipped-bg); color: var(--status-shipped-text);">Customer</span>
+                        </td>
+                        <td>22</td>
+                        <td>$140</td>
+                        <td>2022-11-08</td>
+                        <td>
+                            <div class="action-icons">
+                                <i class="fa-solid fa-envelope"></i>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="customer-info">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRvVidHhSkbNNcG76_XNaOXDUQ4xQEuHEE6kOGGBAx9MgA0SpYYuJzpwaiV2jrGjCC3UsJWdTAupRPUxkSQxb92zSOuoI4G3Q-crDX_s4&s=10" alt="kicm">
+                                <div>
+                                    <span class="name">Nguyen Bao Khanh</span>
+                                    <span class="id">ID: 4</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="customer-info">
+                                <div>
+                                    <span class="email">kicm@email.com</span>
+                                    <span class="phone">+84 912049958</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="status-badge"
+                                  style="background-color: var(--status-processing-bg); color: var(--status-processing-text);">VIP Customer</span>
+                        </td>
+                        <td>22</td>
+                        <td>$13500</td>
+                        <td>2022-11-08</td>
+                        <td>
+                            <div class="action-icons">
+                                <i class="fa-solid fa-envelope"></i>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash-can"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+<div class="modal-overlay" id="modal-overlay"></div>
+<div class="modal" id="delete-modal">
+    <div class="modal-header">
+        <h3>Confirm Deletion</h3>
+        <button class="modal-close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body"><p>Are you sure you want to delete this item?</p></div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-danger" id="modal-delete-btn">Delete</button>
+    </div>
+</div>
+<div class="toast" id="success-toast">
+    <i class="fa-solid fa-check-circle"></i>
+    <span>Action completed successfully!</span>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

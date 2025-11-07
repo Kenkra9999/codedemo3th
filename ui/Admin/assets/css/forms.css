@@ -1,0 +1,112 @@
+.form-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.4rem;
+}
+
+.form-container .card-content {
+  padding: 2.4rem;
+}
+.form-aside .card-content {
+  padding: 2.4rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+.form-group label {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1.4rem;
+  font-family: "Inter", sans-serif;
+  background-color: var(--white);
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.form-group small {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-top: 0.6rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  margin-top: 2.4rem;
+}
+[style*="grid-column: 1 / -1"] .form-actions {
+  padding-top: 2.4rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.image-upload-box {
+  border: 2px dashed var(--border-color);
+  border-radius: 8px;
+  padding: 2.4rem;
+  text-align: center;
+  background-color: var(--light-bg);
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
+}
+.image-upload-box:hover {
+  background-color: #f1f5f9;
+  border-color: var(--primary-color);
+}
+.image-upload-box .upload-icon {
+  font-size: 4rem;
+  color: var(--primary-color);
+  margin-bottom: 1.6rem;
+}
+.image-upload-box p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+.image-upload-box p strong {
+  color: var(--primary-color);
+}
+.image-upload-box input[type="file"] {
+  display: none;
+}
+.image-preview {
+  margin-top: 1.6rem;
+}
+.image-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  object-fit: cover;
+}

@@ -1,0 +1,24 @@
+.customer-info {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.customer-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.customer-info div {
+  display: flex;
+  flex-direction: column;
+}
+.customer-info .name {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+.customer-info .email {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}

@@ -1,0 +1,209 @@
+body {
+    background-color: #0d0d0d;
+    color: #fafafa;
+}
+
+/* NAVBAR */
+.navbar-wrapper {
+    z-index: 1000;
+    width: 100%;
+    height: 7rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10rem;
+    background-color: #141414ef;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navbar-wrapper .logo img {
+    height: 9rem;
+    object-fit: contain;
+}
+
+.navbar-wrapper .search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 1rem 1.6rem;
+    background-color: rgba(249, 249, 249, 0.1);
+    border-radius: 24px;
+    width: 480px;
+}
+
+.navbar-wrapper .search .icon {
+    color: rgba(250, 250, 250, 0.4);
+    font-size: 1.6rem;
+}
+
+.navbar-wrapper .search input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: rgba(250, 250, 250, 0.8);
+    font-size: 1.4rem;
+}
+
+.navbar-wrapper .search input:focus {
+    outline: none;
+}
+
+.navbar-wrapper .hotlinks {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    list-style: none;
+    position: relative;
+}
+
+.navbar-wrapper .hotlinks li a {
+    color: #fafafa;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: color 0.2s;
+}
+
+.navbar-wrapper .hotlinks li a:hover {
+    color: #00b3ff;
+}
+
+.navbar-wrapper .submenu {
+    position: absolute;
+    top: 160%;
+    left: 0;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    min-width: 180px;
+    padding: 1.4rem 0.4rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-wrapper .hotlinks li:hover .submenu {
+    visibility: visible;
+    opacity: 1;
+}
+
+.navbar-wrapper .submenu li a {
+    color: rgba(250, 250, 250, 0.85);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: background-color 0.2s, color 0.2s;
+    padding: 1rem;
+    border-radius: 0.8rem;
+}
+
+.navbar-wrapper .submenu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ABOUT */
+.container {
+    width: 100%;
+    background-color: #141414;
+}
+
+.container .header {
+    padding-top: 20rem;
+    padding-bottom: 5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3.4rem;
+}
+
+.container .header .title {
+    text-align: center;
+    width: 31%;
+    height: fit-content;
+    font-size: 4rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #ffffff, #888888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    overflow: visible;
+}
+
+.container .body {
+    padding-bottom: 10rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .body p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    width: 50%;
+
+    color: var(--White_80, rgba(250, 250, 250, 0.8));
+    line-height: 1.6;
+}
+/* FOOTER */
+.footer-wrapper {
+    color: #fafafa;
+    padding: 5rem 10rem;
+    height: 40vh;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+}
+
+.footer-container h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    background: linear-gradient(to right, #ffffff, #888888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.footer-container p {
+    font-size: 1.6rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 1rem;
+    max-width: 50%;
+    line-height: 2.6rem;
+}
+
+.block-right {
+    flex-wrap: nowrap;
+    display: flex;
+    gap: 3rem;
+}
+
+.block-right ul {
+    list-style: none;
+}
+
+.block-right h4 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.block-right li {
+    width: 15rem;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s;
+    line-height: 2.6rem;
+}
+
+.block-right li:hover {
+    color: #00b3ff;
+    cursor: pointer;
+}

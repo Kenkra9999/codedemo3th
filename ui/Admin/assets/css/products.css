@@ -1,0 +1,26 @@
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.product-info img {
+    width: 5rem;
+    max-height: 5rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: #fcfcfc;
+  object-fit: cover;
+}
+.product-info div {
+  display: flex;
+  flex-direction: column;
+}
+.product-info .name {
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+.product-info .id {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}

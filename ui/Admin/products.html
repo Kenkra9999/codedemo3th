@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Products</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+<div class="app-container">
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <img style="width: 200px;" src="../../ui/User/assets/images/2.png" alt="logo">
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html"><i
+                    class="fa-solid fa-table-cells-large"></i><span>Dashboard</span></a></li>
+            <li class="nav-item"><a href="products.html"><i
+                    class="fa-solid fa-box-archive"></i><span>Products</span></a></li>
+            <li class="nav-item"><a href="categories.html"><i
+                    class="fa-solid fa-folder-tree"></i><span>Categories</span></a></li>
+            <li class="nav-item"><a href="orders.html"><i class="fa-solid fa-cart-shopping"></i><span>Orders</span></a>
+            </li>
+            <li class="nav-item"><a href="customers.html"><i class="fa-solid fa-users"></i><span>Customers</span></a>
+            </li>
+            <li class="nav-item"><a href="reports.html"><i class="fa-solid fa-chart-line"></i><span>Reports</span></a>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#"><i class="fa-solid fa-gear"></i><span>Settings</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="app-header">
+            <form action="search-results.html" method="GET" class="header-search">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" name="query" placeholder="Search products, orders, customers...">
+            </form>
+            <div class="header-right">
+                <button class="icon-btn"><i class="fa-regular fa-bell"></i></button>
+
+                <div class="profile-menu" id="profile-menu-toggle">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbN9kird_uBOxIp7D8wPDFheGHqHYkba_FDw&s"
+                         alt="Admin Avatar">
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+
+                <div class="profile-dropdown" id="profile-dropdown">
+                    <div class="dropdown-header">
+                        <span>Admin</span>
+                        <small>admin@tech.com</small>
+                    </div>
+                    <ul class="dropdown-list">
+                        <li class="dropdown-item"><a href="#"><i class="fa-solid fa-gear"></i><span>Setting</span></a>
+                        </li>
+                    </ul>
+                    <div class="dropdown-footer">
+                        <li class="dropdown-item"><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="page-content">
+            <div class="page-header">
+                <div>
+                    <h1>Products Management</h1>
+                    <p>Manage your product inventory and catalog</p>
+                </div>
+                <a href="add-product.html" class="btn btn-primary" id="add-product-btn">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>Add Product</span>
+                </a>
+            </div>
+
+            <form action="search-results.html" method="GET" class="filters-bar">
+                <div class="filter-group" style="flex: 2;">
+                    <label for="search-product">Search Products</label>
+                    <input type="text" id="search-product" name="query" placeholder="Search by product name...">
+                </div>
+                <div class="filter-group">
+                    <label for="filter-category">Category</label>
+                    <select id="filter-category" name="category">
+                        <option value="all">All Categories</option>
+                        <option value="smartphones">Smartphones</option>
+                        <option value="laptops">Laptops</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-status">Status</label>
+                    <select id="filter-status" name="status">
+                        <option value="all">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="lowstock">Low Stock</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="align-self: flex-end;">Search</button>
+            </form>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1590212151175-e58edd96185b?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1171"
+                                     alt="Monitor 27inch">
+                                <div>
+                                    <span class="name">Monitor 27"</span>
+                                    <span class="id">ID: 1</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Monitor</td>
+                        <td>$229</td>
+                        <td>45</td>
+                        <td>144Hz refresh rate, 2K display, Lorem ipsum
+                            dolor sit amet consectetur adipisicing elit.
+                            Molestiae quas dolore,...
+                        </td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>
+                            <div class="action-icons">
+                                <a href="edit-product.html"><i class="fa-solid fa-pen product-edit-btn"></i></a>
+                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1632156752398-2b2cb4e6c907?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1026"
+                                     alt="Power Bank">
+                                <div>
+                                    <span class="name">Power Bank</span>
+                                    <span class="id">ID: 2</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Power Bank</td>
+                        <td>$39</td>
+                        <td>23</td>
+                        <td>20,000mAh, dual USB-C output</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>
+                            <div class="action-icons">
+                                <a href="edit-product.html"><i class="fa-solid fa-pen product-edit-btn"></i></a>
+                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1702471897393-47ec1ba1192b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=740"
+                                     alt="VR Headset">
+                                <div>
+                                    <span class="name">VR Headset</span>
+                                    <span class="id">ID: 10</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>VR Headset</td>
+                        <td>$399</td>
+                        <td>19</td>
+                        <td>Immersive experience with 4K display</td>
+                        <td><span class="status-badge status-inactive">Inactive</span></td>
+                        <td>
+                            <div class="action-icons">
+                                <a href="edit-product.html"><i class="fa-solid fa-pen product-edit-btn"></i></a>
+                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1615526675159-e248c3021d3f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=686"
+                                     alt="Wireless Charger">
+                                <div>
+                                    <span class="name">Wireless Charger</span>
+                                    <span class="id">ID: 10</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Wireless Charger</td>
+                        <td>$49</td>
+                        <td>19</td>
+                        <td>Fast charge up to 20W, MagSafe</td>
+                        <td><span class="status-badge status-active">Active</span></td>
+                        <td>
+                            <div class="action-icons">
+                                <a href="edit-product.html"><i class="fa-solid fa-pen product-edit-btn"></i></a>
+                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="product-info">
+                                <img src="https://images.unsplash.com/photo-1571251455684-2eb131fdb294?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170"
+                                     alt="Smart Home Hub">
+                                <div>
+                                    <span class="name">Smart Home Hub</span>
+                                    <span class="id">ID: 10</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Tablets</td>
+                        <td>$99</td>
+                        <td>19</td>
+                        <td>Voice control all your devices</td>
+                        <td><span class="status-badge status-lowstock">Low Stock</span></td>
+                        <td>
+                            <div class="action-icons">
+                                <a href="edit-product.html"><i class="fa-solid fa-pen product-edit-btn"></i></a>
+                                <i class="fa-solid fa-trash-can"></i>
+                                <i class="fa-solid fa-copy"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <span>Showing 1 to 10 of 12 results</span>
+                    <div class="pagination-controls">
+
+                        <button  class="active">1</button>
+                        <a href="productsPage2nd.html"><button>2</button></a>
+                        <a href="productsPage2nd.html"><button><i class="fa-solid fa-chevron-right"></i></button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="modal-overlay" id="modal-overlay"></div>
+<div class="modal" id="delete-modal">
+    <div class="modal-header">
+        <h3>Confirm Deletion</h3>
+        <button class="modal-close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body"><p>Are you sure you want to delete this item? This action cannot be undone.</p></div>
+    <div class="modal-footer">
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-danger" id="modal-delete-btn">Delete</button>
+    </div>
+</div>
+<div class="toast" id="success-toast">
+    <i class="fa-solid fa-check-circle"></i>
+    <span>Action completed successfully!</span>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
