@@ -171,3 +171,57 @@ document.addEventListener("DOMContentLoaded", function () {
     btn.addEventListener("click", () => showToast("Showing item details..."))
   );
 });
+// --- LOGIC HIỂN THỊ ĐƠN HÀNG CHO ADMIN ---
+// (Dán đoạn này vào cuối tệp ui/Admin/assets/js/main.js)
+
+function loadAdminOrders() {
+  const orders = JSON.parse(localStorage.getItem('orders') || "[]");
+  const tableBody = document.getElementById('orders-table-body');
+
+  if (!tableBody) return; // Chỉ chạy nếu đang ở trang orders.html
+
+  tableBody.innerHTML = ""; // Xóa các đơn hàng tĩnh
+
+  if (orders.length === 0) {
+    tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No orders found.</td></tr>';
+    return;
+  }
+
+  orders.forEach(order => {
+    // Tính tổng tiền
+    let total = 0;
+    let totalItems = 0;
+    order.items.forEach(item => {
+      total += item.price * item.quantity;
+      totalItems += item.quantity;
+    });
+
+    const rowHtml = `
+            <tr>
+                <td><strong>${order.orderId}</strong></td>
+                <td>
+                    <div class="customer-info">
+                        <div>
+                            <span class="name">${order.user}</span>
+                        </div>
+                    </div>
+                </td>
+                <td>${order.date}</td>
+                <td>$ ${total.toFixed(2)}<br><small style="color: var(--text-secondary);">${totalItems} items</small></td>
+                <td><span class="status-badge status-completed">Completed</span></td>
+                <td>
+                    <div class="action-icons">
+                        <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-print"></i>
+                    </div>
+                </td>
+            </tr>
+        `;
+    tableBody.innerHTML += rowHtml;
+  });
+}
+
+// Tự động chạy khi tải trang Admin
+document.addEventListener("DOMContentLoaded", () => {
+  loadAdminOrders();
+});

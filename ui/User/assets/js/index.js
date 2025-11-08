@@ -40,51 +40,62 @@ function initProductDetailPage() {
             const originalText = button.textContent;
             button.classList.add("loading");
 
-            setTimeout(() => {
-                button.classList.remove("loading");
-                button.innerHTML = '<i class="fa fa-check"></i> Success';
-                button.classList.add("success");
+            // add to cart 
+
+            function handleButtonSuccess(button) {
+                const originalText = button.textContent;
+                button.classList.add("loading");
+
+                // GỌI HÀM THÊM VÀO GIỎ HÀNG
+                if (button.classList.contains('btn-add')) {
+                    addToCart(); // Gọi hàm từ cart.js
+                }
 
                 setTimeout(() => {
-                    button.textContent = originalText;
-                    button.classList.remove("success");
-                }, 2000);
-            }, 1000);
+                    button.classList.remove("loading");
+                    button.innerHTML = '<i class="fa fa-check"></i> Success';
+                    button.classList.add("success");
+
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.classList.remove("success");
+                    }, 2000);
+                }, 1000);
+            }
+
+            addBtn.addEventListener("click", () => handleButtonSuccess(addBtn));
+            buyBtn.addEventListener("click", () => handleButtonSuccess(buyBtn));
+        }
+    }
+
+    // Hàm này CHẠY TRÊN TẤT CẢ CÁC TRANG
+    function initGlobalScripts() {
+        // 3. NAVBAR SCROLL
+        let lastScrollTop = 0;
+        const navbar = document.querySelector(".navbar-wrapper");
+
+        // Chỉ chạy nếu có navbar
+        if (navbar) {
+            window.addEventListener("scroll", function () {
+                const currentScroll =
+                    window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScroll > lastScrollTop && currentScroll > 100) {
+                    // Cuộn xuống: ẩn
+                    navbar.classList.add("hidden");
+                } else {
+                    // Cuộn lên: hiện
+                    navbar.classList.remove("hidden");
+                }
+                lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            });
         }
 
-        addBtn.addEventListener("click", () => handleButtonSuccess(addBtn));
-        buyBtn.addEventListener("click", () => handleButtonSuccess(buyBtn));
-    }
-}
-
-// Hàm này CHẠY TRÊN TẤT CẢ CÁC TRANG
-function initGlobalScripts() {
-    // 3. NAVBAR SCROLL
-    let lastScrollTop = 0;
-    const navbar = document.querySelector(".navbar-wrapper");
-
-    // Chỉ chạy nếu có navbar
-    if (navbar) {
-        window.addEventListener("scroll", function () {
-            const currentScroll =
-                window.pageYOffset || document.documentElement.scrollTop;
-
-            if (currentScroll > lastScrollTop && currentScroll > 100) {
-                // Cuộn xuống: ẩn
-                navbar.classList.add("hidden");
-            } else {
-                // Cuộn lên: hiện
-                navbar.classList.remove("hidden");
-            }
-            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
+        // (Phần submenu dùng CSS :hover nên không cần JS)
     }
 
-    // (Phần submenu dùng CSS :hover nên không cần JS)
-}
-
-// Chạy các hàm này khi tài liệu đã tải xong
-document.addEventListener("DOMContentLoaded", function () {
-    initProductDetailPage(); // Thử chạy code của trang chi tiết
-    initGlobalScripts(); // Luôn chạy code chung (navbar)
-});
+    // Chạy các hàm này khi tài liệu đã tải xong
+    document.addEventListener("DOMContentLoaded", function () {
+        initProductDetailPage(); // Thử chạy code của trang chi tiết
+        initGlobalScripts(); // Luôn chạy code chung (navbar)
+    });
