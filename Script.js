@@ -1,3 +1,7 @@
+/* ====================
+   KHỐI 1: CHUYỂN TAB VÀ HIỂN THỊ MẬT KHẨU
+   (Giữ nguyên code gốc của bạn)
+   ==================== */
 const container = document.getElementById("container");
 const registerBtn = document.getElementById("register");
 const loginBtn = document.getElementById("login");
@@ -14,80 +18,16 @@ const toggleLoginPassword = document.getElementById('toggleLoginPassword');
 const loginPassword = document.getElementById('loginPassword');
 
 toggleLoginPassword.addEventListener('click', () => {
-    // Nếu đang ẩn thì chuyển sang hiện
     if (loginPassword.type === 'password') {
         loginPassword.type = 'text';
-        // đổi icon sang con mắt (hiện)
         toggleLoginPassword.classList.remove('fa-eye-slash');
         toggleLoginPassword.classList.add('fa-eye');
     } else {
-        // nếu đang hiện thì chuyển sang ẩn
         loginPassword.type = 'password';
-        // đổi icon sang gạch chéo (ẩn)
         toggleLoginPassword.classList.remove('fa-eye');
         toggleLoginPassword.classList.add('fa-eye-slash');
     }
 });
-
-
-/* ==================== SIGN-UP VALIDATION ====================
-   Phần này giữ nguyên để bạn tạo tài khoản nếu muốn
-*/
-function legacySignup() {
-    const signupForm = document.querySelector('.sign-up form');
-    const pwdInput = document.getElementById('signupPassword');
-    const confirmInput = document.getElementById('confirmPassword');
-    const pwdError = document.getElementById('pwdError');
-    const confirmError = document.getElementById('confirmError');
-    const successMsg = document.getElementById('signupSuccess');
-
-    function clearSignupErrors() {
-        pwdError.textContent = '';
-        confirmError.textContent = '';
-        successMsg.textContent = '';
-        pwdInput.style.border = confirmInput.style.border = '';
-    }
-
-    signupForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        clearSignupErrors();
-        let err = false;
-
-        // 1. Mật khẩu >= 6 ký tự
-        if (pwdInput.value.length < 6) {
-            pwdError.textContent = 'Mật khẩu phải ít nhất 6 ký tự';
-            pwdInput.style.border = '1px solid #e74c3c';
-            err = true;
-        }
-
-        // 2. Confirm phải khớp
-        if (pwdInput.value !== confirmInput.value) {
-            confirmError.textContent = 'Mật khẩu xác nhận không khớp';
-            confirmInput.style.border = '1px solid #e74c3c';
-            err = true;
-        }
-
-        // 3. Email hợp lệ (đơn giản)
-        const email = document.querySelector('.sign-up input[type="email"]').value;
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            alert('Vui lòng nhập email hợp lệ');
-            err = true;
-        }
-
-        if (err) return;
-
-        // Thành công → hiện thông báo + chuyển tab sau 1s
-        successMsg.textContent = 'Tạo tài khoản thành công!';
-        setTimeout(() => {
-            container.classList.remove('active');   // chuyển về Sign In
-            successMsg.textContent = '';
-            signupForm.reset();
-        }, 1000);
-    });
-}
-// legacySignup();
-// ---- end legacy block ----
-
 
 const forgetLink = document.querySelector('.sign-in a');
 forgetLink.addEventListener('click', (e) => {
@@ -97,26 +37,41 @@ forgetLink.addEventListener('click', (e) => {
     toggleLoginPassword.classList.add('fa-eye');
 });
 
-// =============================
-// 🔹 VALIDATE CREATE ACCOUNT (Giữ nguyên)
-// =============================
-
+/* ====================
+   KHỐI 2: VALIDATE CREATE ACCOUNT (ĐÃ SỬA)
+   Thêm logic để lấy và lưu Username
+   ==================== */
 const signUpForm = document.querySelector('.sign-up form');
+const usernameInput = signUpForm.querySelector('#signupUsername'); // Lấy ô username mới
 const emailInput = signUpForm.querySelector('input[type="email"]');
 const passwordInput = signUpForm.querySelectorAll('input[type="password"]')[0];
 const confirmInput = signUpForm.querySelectorAll('input[type="password"]')[1];
 
-// Thêm 1 thẻ p để hiển thị thông báo
 const message = document.createElement('p');
 message.style.marginTop = '10px';
 signUpForm.appendChild(message);
 
 signUpForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // chặn reload
+    e.preventDefault();
 
+    const username = usernameInput.value.trim();
     const email = emailInput.value.trim();
     const password = passwordInput.value;
     const confirm = confirmInput.value;
+
+    // Kiểm tra Username
+    if (username === '') {
+        message.textContent = 'Please enter a username.';
+        message.style.color = 'red';
+        return;
+    }
+
+    // Kiểm tra xem username đã tồn tại chưa
+    if (localStorage.getItem(username)) {
+        message.textContent = 'Username already exists.';
+        message.style.color = 'red';
+        return;
+    }
 
     // Kiểm tra email
     if (email === '' || !email.includes('@') || !email.includes('.')) {
@@ -139,13 +94,13 @@ signUpForm.addEventListener('submit', (e) => {
         return;
     }
 
-    // Nếu hợp lệ
+    // Nếu hợp lệ: Lưu tài khoản
+    // Chúng ta sẽ lưu mật khẩu bằng cách dùng "username" làm chìa khóa (key)
+    localStorage.setItem(username, password);
+    // Bạn cũng có thể lưu email nếu muốn, ví dụ: localStorage.setItem(username + "_email", email);
+
     message.textContent = 'Account created successfully!';
     message.style.color = 'green';
-
-    // Lưu tài khoản tạm thời
-    localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
 
     // 1 giây sau chuyển sang tab Sign In
     setTimeout(() => {
@@ -155,35 +110,48 @@ signUpForm.addEventListener('submit', (e) => {
     }, 1000);
 });
 
-// =============================
-// 🔹 VALIDATE SIGN IN (ĐÃ SỬA THEO YÊU CẦU CỦA BẠN)
-// =============================
 
+/* ====================
+   KHỐI 3: VALIDATE SIGN IN (ĐÃ SỬA)
+   Kiểm tra bằng Username và lưu trạng thái đăng nhập
+   ==================== */
 const signInForm = document.querySelector('.sign-in form');
-// const signInEmail = signInForm.querySelector('input[type="email"]'); // Không cần
-// const signInPassword = signInForm.querySelector('#loginPassword'); // Không cần
+const signInUsername = signInForm.querySelector('#loginUsername'); // Lấy ô username đăng nhập
+const signInPassword = signInForm.querySelector('#loginPassword');
 
-// Thêm thẻ p để hiện thông báo đăng nhập
 const signInMsg = document.createElement('p');
 signInMsg.style.marginTop = '10px';
 signInForm.appendChild(signInMsg);
 
 signInForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Ngăn trang tải lại
+    e.preventDefault();
 
-    // KHÔNG CẦN KIỂM TRA EMAIL HAY PASSWORD
-    // const storedEmail = localStorage.getItem('email');
-    // const storedPassword = localStorage.getItem('password');
+    const username = signInUsername.value;
+    const password = signInPassword.value;
 
-    // MÌNH XÓA BỎ LỆNH IF/ELSE VÀ CHẠY THẲNG CODE ĐĂNG NHẬP THÀNH CÔNG
+    // Lấy mật khẩu đã lưu từ localStorage dựa trên username
+    const storedPassword = localStorage.getItem(username);
 
-    // Thông báo cho người dùng
-    signInMsg.textContent = 'Login successful! Redirecting...';
-    signInMsg.style.color = 'green';
+    // ** Logic kiểm tra đăng nhập (Không còn đăng nhập bừa) **
+    if (storedPassword && password === storedPassword) {
 
-    // *** ĐIỀU HƯỚNG QUAN TRỌNG ***
-    // Chuyển hướng đến trang user
-    setTimeout(() => {
-        window.location.href = './ui/User/index.html';
-    }, 1000); // Chờ 1 giây rồi chuyển trang
+        // Thông báo thành công
+        signInMsg.textContent = 'Login successful! Redirecting...';
+        signInMsg.style.color = 'green';
+
+        // ** QUAN TRỌNG: LƯU TRẠNG THÁI ĐĂNG NHẬP **
+        // Chúng ta báo cho trình duyệt biết là đã đăng nhập
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('loggedInUser', username); // Lưu tên user lại
+
+        // Chuyển hướng
+        setTimeout(() => {
+            window.location.href = './ui/User/index.html';
+        }, 1000);
+
+    } else {
+        // Sai tài khoản hoặc mật khẩu
+        signInMsg.textContent = 'Invalid username or password.';
+        signInMsg.style.color = 'red';
+    }
 });
