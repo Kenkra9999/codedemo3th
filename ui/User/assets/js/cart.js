@@ -53,19 +53,33 @@ function updateCartIcon() {
         totalItems += item.quantity;
     });
 
-    // Giả sử bạn có 1 thẻ <span> với id="cart-item-count" cạnh chữ "Cart"
-    const cartIcon = document.getElementById('cart-item-count');
-    if (cartIcon) {
-        cartIcon.textContent = `(${totalItems})`;
+    // Tìm link Cart
+    const cartLink = document.querySelector('a[href="./checkout.html"]');
+    if (cartLink) {
+        // Xóa số đếm cũ (nếu có)
+        const oldCounter = cartLink.querySelector('span');
+        if (oldCounter) {
+            oldCounter.remove();
+        }
+
+        // Thêm số đếm mới
+        if (totalItems > 0) {
+            const counterSpan = document.createElement('span');
+            counterSpan.textContent = ` (${totalItems})`;
+            counterSpan.style.color = "#00b3ff"; // Cho màu nổi bật
+            cartLink.appendChild(counterSpan);
+        }
     }
 }
+
 
 // --- HÀM HIỂN THỊ GIỎ HÀNG (DÙNG Ở TRANG CHECKOUT) ---
 function loadCheckoutCart() {
     const cart = JSON.parse(localStorage.getItem('cart') || "[]");
-    const cartContainer = document.getElementById('cart-items-container'); // Vị trí để chèn HTML
-    const subtotalEl = document.getElementById('subtotal-price');
-    const totalEl = document.getElementById('total-price');
+    // CẬP NHẬT: Tìm .body bên trong .oder-wrapper
+    const cartContainer = document.querySelector(".oder-wrapper .body");
+    const subtotalEl = document.querySelector(".detail-price .subtotal");
+    const totalEl = document.querySelector(".total span:last-child");
 
     if (!cartContainer) return; // Chỉ chạy nếu ở đúng trang checkout
 
@@ -73,9 +87,9 @@ function loadCheckoutCart() {
     let subtotalPrice = 0;
 
     if (cart.length === 0) {
-        cartContainer.innerHTML = "<p style='color: white; text-align: center;'>Your cart is empty.</p>";
-        subtotalEl.textContent = "$0";
-        totalEl.textContent = "$0";
+        cartContainer.innerHTML = "<p class='no-product'>Your cart is empty.</p>"; // Dùng class 'no-product'
+        if (subtotalEl) subtotalEl.textContent = "$0";
+        if (totalEl) totalEl.textContent = "$0"; // Giả sử ship = 0
         return;
     }
 
@@ -89,7 +103,7 @@ function loadCheckoutCart() {
                 <div class="info">
                     <h2 class="product-name">${item.name}</h2>
                     <div class="price-quatity">
-                        <span class="product-price">$ ${item.price}</span>
+                        <span class="product-price">$ ${item.price.toFixed(2)}</span>
                         <span class="quantity">&times; ${item.quantity}</span>
                     </div>
                 </div>
@@ -99,14 +113,12 @@ function loadCheckoutCart() {
     });
 
     // Cập nhật tổng tiền (giả sử phí ship 35000)
-    // Lưu ý: Giá sản phẩm đang là $, phí ship là VND. Cần đồng nhất!
-    // Tạm thời bỏ qua phí ship để tính cho đúng
-
-    const shippingFee = 0; // Tạm cho phí ship = 0
+    // CẢNH BÁO: Phí ship đang là VND, Tổng tiền là USD. Tạm thời tính phí ship = 0
+    const shippingFee = 0;
     const totalPrice = subtotalPrice + shippingFee;
 
-    subtotalEl.textContent = `$ ${subtotalPrice.toFixed(2)}`;
-    totalEl.textContent = `$ ${totalPrice.toFixed(2)}`;
+    if (subtotalEl) subtotalEl.textContent = `$ ${subtotalPrice.toFixed(2)}`;
+    if (totalEl) totalEl.textContent = `$ ${totalPrice.toFixed(2)}`;
 }
 
 // --- HÀM ĐẶT HÀNG (DÙNG Ở TRANG CHECKOUT) ---
@@ -124,6 +136,7 @@ function placeOrder(event) {
     // Kiểm tra xem đã đăng nhập chưa
     if (!user) {
         alert("Please login to place an order.");
+        // Chuyển về trang login
         window.location.href = '../../login.html';
         return;
     }
@@ -133,7 +146,7 @@ function placeOrder(event) {
 
     // 2. Tạo đơn hàng mới
     const newOrder = {
-        orderId: new Date().getTime(), // Tạo ID đơn hàng bằng thời gian
+        orderId: "ORD-" + new Date().getTime(), // Tạo ID đơn hàng
         user: user, // Lấy tên user đang đăng nhập
         items: cart,
         date: new Date().toLocaleString()
@@ -157,4 +170,10 @@ function placeOrder(event) {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartIcon(); // Cập nhật icon giỏ hàng ở mọi trang
     loadCheckoutCart(); // Chỉ chạy ở trang checkout (vì có id 'cart-items-container')
+
+    // CẬP NHẬT: Tự động gắn sự kiện 'submit' cho form checkout
+    const checkoutForm = document.querySelector(".block-left form");
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', placeOrder);
+    }
 });

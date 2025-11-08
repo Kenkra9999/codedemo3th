@@ -176,6 +176,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function loadAdminOrders() {
   const orders = JSON.parse(localStorage.getItem('orders') || "[]");
+  // CẬP NHẬT: Đây là ID bạn cần thêm vào <tbody> trong file orders.html
   const tableBody = document.getElementById('orders-table-body');
 
   if (!tableBody) return; // Chỉ chạy nếu đang ở trang orders.html
@@ -186,6 +187,9 @@ function loadAdminOrders() {
     tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">No orders found.</td></tr>';
     return;
   }
+
+  // Đảo ngược thứ tự để đơn hàng mới nhất lên trên
+  orders.reverse();
 
   orders.forEach(order => {
     // Tính tổng tiền
@@ -208,10 +212,10 @@ function loadAdminOrders() {
                 </td>
                 <td>${order.date}</td>
                 <td>$ ${total.toFixed(2)}<br><small style="color: var(--text-secondary);">${totalItems} items</small></td>
-                <td><span class="status-badge status-completed">Completed</span></td>
-                <td>
+                <td><span class="status-badge status-pending">Pending</span></td> <td>
                     <div class="action-icons">
                         <i class="fa-solid fa-eye"></i>
+                        <i class="fa-solid fa-pen"></i>
                         <i class="fa-solid fa-print"></i>
                     </div>
                 </td>
