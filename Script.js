@@ -31,8 +31,7 @@ toggleLoginPassword.addEventListener('click', () => {
 
 
 /* ==================== SIGN-UP VALIDATION ====================
-   ĐOẠN CŨ (legacy) ĐƯỢC BỌC VÀO HÀM legacySignup() — KHÔNG GỌI HÀM
-   ==> Giữ nguyên text nhưng tránh khai báo trùng/ runtime error.
+   Phần này giữ nguyên để bạn tạo tài khoản nếu muốn
 */
 function legacySignup() {
     const signupForm = document.querySelector('.sign-up form');
@@ -99,7 +98,7 @@ forgetLink.addEventListener('click', (e) => {
 });
 
 // =============================
-// 🔹 VALIDATE CREATE ACCOUNT
+// 🔹 VALIDATE CREATE ACCOUNT (Giữ nguyên)
 // =============================
 
 const signUpForm = document.querySelector('.sign-up form');
@@ -157,12 +156,12 @@ signUpForm.addEventListener('submit', (e) => {
 });
 
 // =============================
-// 🔹 VALIDATE SIGN IN
+// 🔹 VALIDATE SIGN IN (ĐÃ SỬA THEO YÊU CẦU CỦA BẠN)
 // =============================
 
 const signInForm = document.querySelector('.sign-in form');
-const signInEmail = signInForm.querySelector('input[type="email"]');
-const signInPassword = signInForm.querySelector('#loginPassword');
+// const signInEmail = signInForm.querySelector('input[type="email"]'); // Không cần
+// const signInPassword = signInForm.querySelector('#loginPassword'); // Không cần
 
 // Thêm thẻ p để hiện thông báo đăng nhập
 const signInMsg = document.createElement('p');
@@ -170,27 +169,21 @@ signInMsg.style.marginTop = '10px';
 signInForm.appendChild(signInMsg);
 
 signInForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Ngăn trang tải lại
 
-    const storedEmail = localStorage.getItem('email');
-    const storedPassword = localStorage.getItem('password');
+    // KHÔNG CẦN KIỂM TRA EMAIL HAY PASSWORD
+    // const storedEmail = localStorage.getItem('email');
+    // const storedPassword = localStorage.getItem('password');
 
-    // Thay thế code ở dòng 141-143
-    if (signInEmail.value === storedEmail && signInPassword.value === storedPassword) {
-        // Thông báo cho người dùng
-        signInMsg.textContent = 'Đăng nhập thành công! Đang chuyển hướng...';
-        signInMsg.style.color = 'green';
+    // MÌNH XÓA BỎ LỆNH IF/ELSE VÀ CHẠY THẲNG CODE ĐĂNG NHẬP THÀNH CÔNG
 
-        // *** ĐIỀU HƯỚNG QUAN TRỌNG ***
-        // Chúng ta dùng '../ui/User/index.html'
-        // Dấu '../' nghĩa là "đi ra khỏi thư mục 'login' hiện tại"
-        // Sau đó đi vào 'ui/User/index.html'
-        setTimeout(() => {
-            window.location.href = './ui/User/index.html';
-        }, 1000); // Chờ 1 giây rồi chuyển trang
+    // Thông báo cho người dùng
+    signInMsg.textContent = 'Login successful! Redirecting...';
+    signInMsg.style.color = 'green';
 
-    } else {
-        signInMsg.textContent = 'Invalid email or password.';
-        signInMsg.style.color = 'red';
-    }
+    // *** ĐIỀU HƯỚNG QUAN TRỌNG ***
+    // Chuyển hướng đến trang user
+    setTimeout(() => {
+        window.location.href = './ui/User/index.html';
+    }, 1000); // Chờ 1 giây rồi chuyển trang
 });
