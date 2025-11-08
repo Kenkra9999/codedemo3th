@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="loginStyle.css" />
+    <title>Forgot Password</title>
+
+    <style>
+        body {
+            background: linear-gradient(to right, #242c3085, #191a38e4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* 
+        .forgot-container {
+            background-color: #fff;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+        } */
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2da0a8;
+        }
+
+        input {
+            width: 100%;
+            background-color: #eee;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            outline: none;
+        }
+
+        button {
+            background-color: #2da0a8;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #1b7980;
+        }
+
+        .message {
+            font-size: 13px;
+            color: #444;
+            margin-top: 15px;
+        }
+
+        .code-field {
+            display: none;
+            margin-top: 15px;
+        }
+
+        .close-forgot:hover {
+            color: #4f3bd0 !important;
+            transition: 0.3s;
+        }
+
+        .forgot-container {
+            position: relative;
+            /* Quan trọng: để nút X định vị theo form */
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .close-forgot {
+            position: absolute;
+            top: 0px;
+            right: 10px;
+            font-size: 38px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            z-index: 10;
+            transition: color 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="forgot-container">
+        <!-- Nút X ở góc trên bên TRÁI, trong form -->
+        <span class="close-forgot" title="Back to Login">×</span>
+
+        <h1>Forgot Password</h1>
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button id="sendCode">Send Code</button>
+
+
+        <div class="code-field" id="codeSection">
+            <input type="text" id="code" placeholder="Enter verification code" />
+            <input type="password" id="newPass" placeholder="Enter new password" />
+            <button id="resetPass">Reset Password</button>
+        </div>
+
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        const sendBtn = document.getElementById('sendCode');
+        const codeSection = document.getElementById('codeSection');
+        const message = document.getElementById('message');
+
+        sendBtn.addEventListener('click', () => {
+            const email = document.getElementById('email').value.trim();
+
+            if (email === '') {
+                message.textContent = 'Please enter your email.';
+                message.style.color = 'red';
+                return;
+            }
+
+            if (!email.includes('@')) {
+                message.textContent = 'Email must contain "@".';
+                message.style.color = 'red';
+                return;
+            }
+
+            message.textContent = `A verification code has been sent to ${email}`;
+            message.style.color = 'green';
+            codeSection.style.display = 'block';
+        });
+
+        const resetBtn = document.getElementById('resetPass');
+        resetBtn.addEventListener('click', () => {
+            const code = document.getElementById('code').value.trim();
+            const newPass = document.getElementById('newPass').value;
+
+            if (code === '' || newPass === '') {
+                message.textContent = 'Please fill in all fields.';
+                message.style.color = 'red';
+                return;
+            }
+
+            if (newPass.length < 6) {
+                message.textContent = 'Password must be at least 6 characters.';
+                message.style.color = 'red';
+                return;
+            }
+
+            message.textContent = 'Your password has been reset successfully!';
+            message.style.color = 'green';
+
+            setTimeout(() => {
+                window.location.href = 'login.html';
+            }, 1200);
+        });
+
+        // Nút X - Thoát về trang login.html
+        const closeForgotBtn = document.querySelector('.close-forgot');
+        if (closeForgotBtn) {
+            closeForgotBtn.addEventListener('click', () => {
+                window.location.href = 'login.html';
+            });
+        }
+    </script>
+</body>
+
+</html>
